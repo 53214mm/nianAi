@@ -2,11 +2,14 @@ package com.star.test;
 
 import com.star.NianAi;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.fabricmc.fabric.api.registry.CompostableRegistry;
+import net.fabricmc.fabric.api.registry.FuelValueEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -65,6 +68,16 @@ public class ModItems {
             new Item.Properties()
     );
 
+    //自定义食物
+    public static final Item SUSPICIOUS_FOOD = register(
+            "suspicious_food",       // ← ID 改为和文件名一致
+            Item::new,
+            new Item.Properties().food(new FoodProperties.Builder().build())
+    );
+
+
+
+
     // ──────────────── 静态初始化触发器 ────────────────
 
     /**
@@ -72,10 +85,31 @@ public class ModItems {
      * 这个方法在 NianAi.onInitialize() 中被调用。
      */
     public static void initialize() {
+        initializeSuspiciousSubstance();
+        initializeSuspiciousFood();
+    }
+
+    //SUSPICIOUS_SUBSTANCE初始化
+    public static void initializeSuspiciousSubstance(){
         // 把物品添加到创造模式的"材料"标签页
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS)
                 .register(output -> output.accept(
                         new ItemStack(SUSPICIOUS_SUBSTANCE),
+                        CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
+                ));
+        // 让 SUSPICIOUS_SUBSTANCE 可以被堆肥机处理，堆肥机的成功率是 30%
+        CompostableRegistry.INSTANCE.add(SUSPICIOUS_SUBSTANCE, 0.3f);
+        // 让 SUSPICIOUS_SUBSTANCE 可以作为燃料，燃烧时间是 30 秒（30 * 20 tick）
+        FuelValueEvents.BUILD.register((builder, context) -> {
+            builder.add(SUSPICIOUS_SUBSTANCE, 30 * 20);
+        });
+    }
+
+    //SUSPICIOUS_FOOD初始化
+    public static void initializeSuspiciousFood(){
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS)
+                .register(output -> output.accept(
+                        new ItemStack(SUSPICIOUS_FOOD),
                         CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
                 ));
     }
