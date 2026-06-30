@@ -1,4 +1,7 @@
 {
   "item.nianai.suspicious_substance": "Suspicious Substance",
-  "item.nianai.suspicious_food": "Suspicious Food"
+  "item.nianai.suspicious_food": "Suspicious Food",
+  "item.minecraft.potion.effect.poison_speed": "Potion of Poison Speed",
+  "item.minecraft.splash_potion.effect.poison_speed": "Splash Potion of Poison Speed",
+  "item.minecraft.lingering_potion.effect.poison_speed": "Lingering Potion of Poison Speed"
 }

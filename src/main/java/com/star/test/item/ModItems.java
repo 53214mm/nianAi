@@ -19,5 +19,6 @@ public class ModItems {
     public static void initialize() {
         ModBasicItems.initialize();
         ModFoodItems.initialize();
+        ModPotions.initialize();
     }
 }
