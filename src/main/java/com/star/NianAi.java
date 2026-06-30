@@ -1,6 +1,6 @@
 package com.star;
 
-import com.star.test.ModItems;
+import com.star.test.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.resources.Identifier;
