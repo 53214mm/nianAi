@@ -20,5 +20,6 @@ public class ModItems {
         ModBasicItems.initialize();
         ModFoodItems.initialize();
         ModPotions.initialize();
+        ModSpawnEggs.initialize();
     }
 }

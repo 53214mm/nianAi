@@ -3,5 +3,6 @@
   "item.nianai.suspicious_food": "可疑食物",
   "item.minecraft.potion.effect.poison_speed": "毒速药水",
   "item.minecraft.splash_potion.effect.poison_speed": "喷溅型毒速药水",
-  "item.minecraft.lingering_potion.effect.poison_speed": "滞留型毒速药水"
+  "item.minecraft.lingering_potion.effect.poison_speed": "滞留型毒速药水",
+  "item.nianai.mini_golem_spawn_egg": "迷你傀儡生成蛋"
 }
